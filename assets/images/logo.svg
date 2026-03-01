@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 160 40" fill="none">
+  <rect width="160" height="40" rx="6" fill="#091018" />
+  <g transform="translate(12,6)">
+    <rect width="28" height="28" rx="6" fill="#00eaff" opacity="0.12"/>
+    <rect x="6" y="6" width="16" height="16" rx="3" fill="#00eaff"/>
+  </g>
+  <text x="60" y="26" fill="#cfeff8" font-family="Segoe UI, Roboto, Arial" font-size="14">GeneralControllers</text>
+</svg>
