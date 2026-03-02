@@ -41,18 +41,16 @@ body{
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 
 /* Logo container should not collapse when menu compresses */
-.header__logo{
+header .logo{
   display:flex;
   align-items:center;
   min-width:180px; /* prevent squeezing */
   flex:0 0 auto;
 }
 
-/* Logo sizing: keep proportions (width:auto) and sharp SVG rendering */
-.header__logo img,
-.header__logo svg,
-.logo img,
-.logo svg{
+/* Logo sizing: target actual <a class="logo"> element */
+header .logo img,
+header .logo svg{
   height:48px !important;
   width:auto !important;
   max-height:none !important;
@@ -61,10 +59,8 @@ body{
 }
 
 @media (max-width:768px){
-  .header__logo img,
-  .header__logo svg,
-  .logo img,
-  .logo svg{height:40px !important;}
+  header .logo img,
+  header .logo svg{height:40px !important;}
 }
 header .logo svg,
 .site-header .logo img,
