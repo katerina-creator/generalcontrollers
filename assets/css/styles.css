@@ -57,16 +57,37 @@ body{
 /* Section spacing */
 .section{padding:var(--space-lg) 0}
 
-.hero{padding-top:var(--space-lg);padding-bottom:var(--space-md);position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom, rgba(11,42,54,0.007) 0, rgba(11,42,54,0.007) 1px, transparent 1px, transparent 8px);opacity:0.02;transform:translateZ(0)}
+.hero{padding-top:var(--space-lg);padding-bottom:var(--space-md);position:relative;overflow:hidden;background:linear-gradient(180deg, #0E1A23 0%, #122634 100%);color:#F2F7FA}
+
+/* Dark overlay to improve legibility over hero imagery */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg, rgba(14,26,35,0.85) 0%, rgba(14,26,35,0.6) 40%, rgba(14,26,35,0.2) 70%);
+  mix-blend-mode:overlay;
+}
+
 .hero-grid{display:grid;grid-template-columns:1fr 260px;gap:32px;align-items:center}
-.hero h1{font-family:var(--heading-font);font-size:44px;margin:0 0 12px;letter-spacing:0.2px;color:var(--text)}
-.lead{color:var(--muted);font-size:18px}
+
+/* Hero-specific typography */
+.hero h1{font-family:var(--heading-font);font-size:44px;margin:0 0 12px;letter-spacing:0.2px;color:#F2F7FA}
+.hero .lead{color:#9FB4C4;font-size:18px}
 .hero-cta{margin-top:20px;display:flex;gap:12px}
 
+/* Buttons inside hero: primary and secondary (ghost) variants) */
+.hero .btn.primary{background-color:#1FA6FF;color:#FFFFFF;box-shadow:none}
+.hero .btn.primary:hover{background-color:#1793E6}
+.hero .btn.ghost{background:transparent;border:1px solid #1FA6FF;color:#1FA6FF}
+.hero .btn.ghost:hover{background:rgba(31,166,255,0.08)}
+
 /* Hero media styling */
-.hero-media{width:100%;border-radius:18px;overflow:hidden;background:transparent;margin:18px 0}
+.hero-media{position:relative;width:100%;border-radius:18px;overflow:hidden;background:transparent;margin:18px 0}
 .hero-image{display:block;width:100%;height:auto;object-fit:cover;max-height:520px}
+
+/* Ensure hero media has a subtle dark overlay for readability */
+.hero-media::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.25);pointer-events:none}
 
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:600}
 .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 3px 8px rgba(11,42,54,0.03);color:#062027}
@@ -116,6 +137,9 @@ body{
 .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(11,42,54,0.08);background:#fbfdff;color:var(--text)}
 
 .site-footer{border-top:1px solid rgba(11,42,54,0.04);padding:18px 0;text-align:center;color:var(--muted)}
+
+/* Next section after hero should appear light to separate visually */
+.hero-banner{background:#F3F7FA;color:#1A2A33}
 
 /* Scroll reveal */
 .reveal{opacity:0;transform:translateY(8px);transition:opacity 520ms cubic-bezier(.02,.7,.1,1),transform 520ms cubic-bezier(.02,.7,.1,1)}
