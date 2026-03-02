@@ -128,7 +128,7 @@ header .logo svg,
 
 /* Hero media styling */
 .hero-media{position:relative;width:100%;border-radius:18px;overflow:hidden;background:transparent;margin:18px 0}
-.hero-image{display:block;width:100%;height:auto;object-fit:contain;max-height:520px}
+.hero-image{display:block;width:100%;height:auto;object-fit:cover;object-position:right center;max-height:520px}
 /* allow svg placeholders to scale nicely */
 
 /* Ensure hero media has a subtle dark overlay for readability */
