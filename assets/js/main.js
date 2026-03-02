@@ -1,22 +1,69 @@
-function contactSubmit(e){
+async function contactSubmit(e){
   e.preventDefault();
   const form = e.currentTarget || e.target;
-  const data = new FormData(form);
-  const name = data.get('name') || '';
-  const contact = data.get('contact') || data.get('email') || '';
-  const message = data.get('message') || '';
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const statusEl = document.createElement('p');
+  statusEl.style.marginTop = '12px';
+  statusEl.style.fontSize = '14px';
+  statusEl.style.textAlign = 'center';
+  
   const lang = document.documentElement.lang || 'ru';
-  const subject = encodeURIComponent((lang.startsWith('en')? 'Website contact: ':'Запрос с сайта: ') + (name || 'No name'));
-  const bodyPlain = (lang.startsWith('en')? 'Name: ':'Имя: ') + name + '\n' + (lang.startsWith('en')? 'Contact: ':'Контакт: ') + contact + '\n\n' + message;
-  const body = encodeURIComponent(bodyPlain);
-  const mailto = 'mailto:info@generalcontrollers.com?subject=' + subject + '&body=' + body;
-  // Try to open mail client; fallback to alert after short delay
-  window.location.href = mailto;
-  setTimeout(()=>{
-    if(lang.startsWith('en')) alert('Thank you! We will contact you.');
-    else alert('Спасибо! Мы свяжемся с вами.');
+  const isEn = lang.startsWith('en');
+  
+  // Remove previous status message if exists
+  const oldStatus = form.querySelector('[data-status-message]');
+  if(oldStatus) oldStatus.remove();
+  
+  statusEl.setAttribute('data-status-message', '1');
+  
+  try {
+    // Disable submit button
+    if(submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+      submitBtn.style.cursor = 'not-allowed';
+    }
+    
+    const data = {
+      name: form.querySelector('input[name="name"]').value || '',
+      contact: form.querySelector('input[name="contact"]').value || '',
+      message: form.querySelector('textarea[name="message"]').value || '',
+      company: form.querySelector('input[name="company"]')?.value || ''
+    };
+    
+    statusEl.textContent = isEn ? 'Sending...' : 'Отправка...';
+    statusEl.style.color = 'var(--muted)';
+    form.appendChild(statusEl);
+    
+    const API_BASE = window.CONTACT_API_URL || 'https://generalcontrollers-contact-api.up.railway.app';
+    const response = await fetch(`${API_BASE}/api/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if(!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to send');
+    }
+    
+    statusEl.textContent = isEn ? 'Thank you! We will contact you.' : 'Спасибо! Мы свяжемся с вами.';
+    statusEl.style.color = 'var(--accent)';
     form.reset();
-  },700);
+    
+  } catch(error) {
+    statusEl.textContent = isEn ? 'Error. Please try again.' : 'Ошибка. Пожалуйста, попробуйте позже.';
+    statusEl.style.color = '#d32f2f';
+    console.error('Contact form error:', error);
+  } finally {
+    // Re-enable submit button
+    if(submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+    }
+  }
+  
   return false;
 }
 
