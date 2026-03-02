@@ -70,8 +70,33 @@ body{
 .case .badges{margin-top:12px}
 .case .badges span{display:inline-block;background:var(--surface-2);color:var(--muted);padding:6px 10px;border-radius:6px;margin-right:8px;font-size:12px;letter-spacing:0.4px}
 
-.process .steps{display:flex;gap:14px}
-.step{flex:1;text-align:center;padding:20px}
+.process .steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* switch to two columns on smaller desktops/tablets */
+@media (max-width: 1024px) {
+  .process .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* single column on phones */
+@media (max-width: 640px) {
+  .process .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step{
+  /* no explicit flex or fixed sizing so cards can shrink naturally */
+  text-align:center;
+  padding:20px;
+}
 
 .reasons{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:18px 0}
 
