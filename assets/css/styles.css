@@ -40,22 +40,24 @@ body{
 /* Header layout: keep vertical centering and spacing */
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 
-/* Logo container should not collapse when menu compresses */
-header .logo{
-  display:flex;
+/* Logo link: prevent line-height from eating space */
+header .logo,
+a.logo{
+  display:inline-flex;
   align-items:center;
-  min-width:180px; /* prevent squeezing */
+  line-height:0;
   flex:0 0 auto;
 }
 
-/* Logo sizing: target actual <a class="logo"> element */
+/* Logo image: fixed height, auto width, constrained max-width */
 header .logo img,
-header .logo svg{
-  height:48px !important;
-  width:auto !important;
-  max-height:none !important;
-  max-width:none !important;
-  display:block !important;
+a.logo img,
+a.logo svg{
+  height:48px;
+  width:auto;
+  max-width:220px;
+  display:block;
+  object-fit:contain;
 }
 
 @media (max-width:768px){
@@ -198,10 +200,9 @@ header .logo svg,
   .hero-grid{grid-template-columns:1fr 220px}
 }
 @media (max-width:768px){
-  .header__logo img,
-  .header__logo svg,
-  .logo img,
-  .logo svg{height:40px}
+  header .logo img,
+  a.logo img,
+  a.logo svg{height:40px}
   .hero{padding-top:var(--space-md);padding-bottom:var(--space-md)}
   .hero h1{font-size:26px}
   .hero-cta{flex-direction:column;align-items:stretch}
