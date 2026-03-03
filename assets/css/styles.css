@@ -142,8 +142,8 @@ header .logo svg,
 .hero-image{display:block;width:100%;height:auto;object-fit:cover;object-position:right center;max-height:520px}
 /* allow svg placeholders to scale nicely */
 
-/* Ensure hero media has a subtle dark overlay for readability */
-.hero-media::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.25);pointer-events:none}
+/* Soft gradient overlay to integrate image seamlessly into background */
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(12,28,36,0.45) 0%, rgba(12,28,36,0.15) 50%, rgba(12,28,36,0.35) 100%);pointer-events:none}
 
 .btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;color:#08141c;font-weight:700;transition:all 200ms ease}
 .btn.primary{background: linear-gradient(135deg, #39c5ff, #1da1f2);box-shadow:0 0 20px rgba(57,197,255,0.35);border:none}
