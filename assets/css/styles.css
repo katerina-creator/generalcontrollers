@@ -40,71 +40,73 @@ body{
 body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
 
 .site-header{border-bottom:1px solid rgba(57,197,255,0.2);position:sticky;top:0;background:#08141c;backdrop-filter:saturate(120%) blur(6px)}
-/* Header layout: keep vertical centering and spacing */
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+/* Header layout: 3-column grid (logo | menu | lang) */
+.header-inner{display:grid;grid-template-columns:220px 1fr 220px;align-items:center;gap:24px;padding:14px 0;}
 
-/* Logo link: prevent line-height from eating space */
+/* Logo container: fixed left column */
 header .logo,
-a.logo{
-  display:inline-flex;
+.logo{
+  display:flex;
   align-items:center;
-  line-height:0;
-  flex:0 0 auto;
-}
-
-/* Logo image: fixed height, auto width, constrained max-width */
-header .logo img,
-a.logo img,
-a.logo svg{
-  height:48px;
+  min-width:220px;
   width:auto;
-  max-width:220px;
-  display:block;
-  object-fit:contain;
+  line-height:0;
 }
 
-/* reinforce logo geometry */
+/* Logo image/svg: fixed height, auto width */
+header .logo img,
 header .logo svg,
-.site-header .logo svg,
-.header__logo svg{stroke-width:1.6;filter:brightness(1.1);}  /* thicker lines, slightly lighter */
-
-@media (max-width:768px){
-  header .logo img,
-  header .logo svg{height:40px !important;}
-}
-header .logo svg,
-.site-header .logo img,
-.site-header .logo svg,
-.header .logo img,
-.header .logo svg,
-.header__logo img,
-.header__logo svg,
 .logo img,
 .logo svg{
-  height:48px !important;
-  width:auto !important;
-  display:block !important;
-  max-height:none !important;
+  height:48px;
+  width:auto;
+  max-width:none;
+  max-height:none;
+  display:block;
+  object-fit:contain;
 }
 
 @media (max-width:768px){
   header .logo img,
   header .logo svg,
-  .site-header .logo img,
-  .site-header .logo svg,
-  .header__logo img,
-  .header__logo svg,
   .logo img,
   .logo svg{
-    height:40px !important;
+    height:40px;
   }
 }
 
-/* Prevent navigation items from wrapping onto multiple lines */
-.main-nav{white-space:nowrap}
-.main-nav a{color:#cfe9ff;text-decoration:none;margin-right:18px;transition:color 200ms ease}
+/* Logo SVG geometry */
+header .logo svg,
+.logo svg{
+  stroke-width:1.6;
+  filter:brightness(1.1);
+}
+
+/* Main nav: center column, prevent wrapping */
+.main-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:24px;
+  white-space:nowrap;
+  flex:1;
+}
+.main-nav a{color:#cfe9ff;text-decoration:none;transition:color 200ms ease}
 .main-nav a:hover{color:#39c5ff}
-.lang-switch a{color:#cfe9ff;text-decoration:none;margin-left:12px;padding:6px 8px;border-radius:6px;transition:all 200ms ease}
+/* Language switcher: right column */
+.lang-switch{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:12px;
+}
+.lang-switch a{
+  color:#cfe9ff;
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:6px;
+  transition:all 200ms ease;
+}
 .lang-switch a:hover{color:#39c5ff}
 .lang-switch a.active{color:#39c5ff;background:rgba(57,197,255,0.2);box-shadow:0 0 12px rgba(57,197,255,0.2);border:1px solid rgba(57,197,255,0.3)}
 
