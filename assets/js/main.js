@@ -61,9 +61,6 @@ function showMessage(text, isError = false) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ТЕСТ уведомления (можешь удалить потом)
-  showMessage("ТЕСТ");
-
   // Scroll reveal (твоя анимация)
   const io = new IntersectionObserver((entries) => {
     entries.forEach(ent => {

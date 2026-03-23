@@ -503,6 +503,41 @@ header .logo:hover img {
   transform: none
 }
 
+.form-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+
+  padding: 18px 26px;
+  border-radius: 12px;
+
+  background: rgba(0, 200, 255, 0.1);
+  border: 1px solid rgba(0, 200, 255, 0.4);
+
+  color: #00d4ff;
+  font-size: 16px;
+  text-align: center;
+
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.35);
+
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  z-index: 9999;
+}
+
+.form-message.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.form-message.error {
+  border-color: rgba(255, 80, 80, 0.6);
+  color: #ff6b6b;
+  box-shadow: 0 0 20px rgba(255, 80, 80, 0.3);
+}
+
 /* Subtle scanline animation */
 @keyframes scanlines {
   from {
@@ -579,39 +614,5 @@ header .logo:hover img {
 
   .card {
     padding: 16px
-  }
-
-  .form-message {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-
-    padding: 14px 20px;
-    border-radius: 10px;
-
-    background: rgba(0, 200, 255, 0.1);
-    border: 1px solid rgba(0, 200, 255, 0.4);
-
-    color: #00d4ff;
-    font-size: 14px;
-
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
-
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-
-    z-index: 9999;
-  }
-
-  .form-message.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .form-message.error {
-    border-color: rgba(255, 80, 80, 0.6);
-    color: #ff6b6b;
-    box-shadow: 0 0 20px rgba(255, 80, 80, 0.3);
   }
 }
