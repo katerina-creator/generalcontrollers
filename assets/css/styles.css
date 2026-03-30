@@ -83,6 +83,7 @@ body::before {
   border-bottom: 1px solid rgba(57, 197, 255, 0.2);
   position: sticky;
   top: 0;
+  padding: 0 16px;
   background: #08141c;
   backdrop-filter: saturate(120%) blur(6px)
 }
@@ -140,13 +141,13 @@ header .logo:hover img {
   justify-content: center;
   align-items: center;
   gap: 24px;
-  white-space: nowrap;
   flex: 1;
 }
 
 .main-nav a {
   color: #cfe9ff;
   text-decoration: none;
+  white-space: nowrap;
   transition: color 200ms ease
 }
 
@@ -661,5 +662,12 @@ header .logo:hover img {
 
   .contact-grid {
     grid-template-columns: 1fr
+  }
+
+  .main-nav {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: auto;
   }
 }

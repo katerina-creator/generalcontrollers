@@ -152,3 +152,10 @@ const API_BASE = window.CONTACT_API_URL || 'https://generalcontrollers-contact-a
 | Global images | — | `max-width:100%; height:auto` |
 | Form button | partial | `width:100%` |
 | Header mobile | fixed columns | grid-area stacked layout ≤768px |
+
+## Header Mobile Fix
+
+- Improved navigation spacing with `gap: 24px` on desktop, `gap: 12px` on mobile (≤600px)
+- Moved `white-space: nowrap` from `.main-nav` to individual `.main-nav a` links to prevent text compression
+- Added `flex-wrap: wrap` and `overflow-x: auto` to nav at ≤600px so items wrap gracefully rather than overflow
+- Added `padding: 0 16px` to `.site-header` for consistent horizontal breathing room on all screen sizes
