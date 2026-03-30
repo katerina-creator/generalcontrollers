@@ -29,6 +29,11 @@
   box-sizing: border-box
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html,
 body {
   height: 100%
@@ -85,9 +90,9 @@ body::before {
 /* Header layout: 3-column grid (logo | menu | lang) */
 .header-inner {
   display: grid;
-  grid-template-columns: 220px 1fr 220px;
+  grid-template-columns: minmax(120px, 220px) 1fr minmax(80px, 220px);
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   padding: 14px 0;
 }
 
@@ -215,7 +220,7 @@ header .logo:hover img {
 /* Hero-specific typography */
 .hero h1 {
   font-family: var(--heading-font);
-  font-size: 44px;
+  font-size: clamp(24px, 5vw, 48px);
   margin: 0 0 12px;
   letter-spacing: -0.5px;
   font-weight: 700;
@@ -224,7 +229,7 @@ header .logo:hover img {
 
 .hero .lead {
   color: #9fc4dd;
-  font-size: 18px
+  font-size: clamp(14px, 2.5vw, 18px)
 }
 
 .hero-cta {
@@ -446,7 +451,7 @@ header .logo:hover img {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: minmax(200px, 360px) 1fr;
   gap: 20px
 }
 
@@ -463,6 +468,11 @@ header .logo:hover img {
   border: 1px solid rgba(57, 197, 255, 0.2);
   background: #0d1821;
   color: #e6f3ff
+}
+
+.contact-form button {
+  width: 100%;
+  margin-top: 8px;
 }
 
 .contact-form input::placeholder,
@@ -557,7 +567,7 @@ header .logo:hover img {
 }
 
 /* Responsive */
-@media (max-width:1000px) {
+@media (max-width: 1024px) {
   .cards {
     grid-template-columns: repeat(2, 1fr)
   }
@@ -571,7 +581,31 @@ header .logo:hover img {
   }
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
+
+  .header-inner {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'logo lang'
+      'nav  nav';
+    gap: 8px;
+  }
+
+  .header-inner .logo {
+    grid-area: logo;
+  }
+
+  .header-inner .main-nav {
+    grid-area: nav;
+    justify-content: flex-start;
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+
+  .header-inner .lang-switch {
+    grid-area: lang;
+    justify-content: flex-end;
+  }
 
   header .logo img,
   a.logo img,
@@ -584,10 +618,6 @@ header .logo:hover img {
     padding-bottom: var(--space-md)
   }
 
-  .hero h1 {
-    font-size: 26px
-  }
-
   .hero-cta {
     flex-direction: column;
     align-items: stretch
@@ -595,16 +625,6 @@ header .logo:hover img {
 
   .hero-cta .btn {
     width: 100%
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 14px
-  }
-
-  .cases .grid {
-    grid-template-columns: 1fr;
-    gap: 14px
   }
 
   .reasons {
@@ -621,5 +641,25 @@ header .logo:hover img {
 
   .card {
     padding: 16px
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 14px
+  }
+
+  .cases .grid {
+    grid-template-columns: 1fr;
+    gap: 14px
+  }
+
+  .reasons {
+    grid-template-columns: 1fr
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr
   }
 }

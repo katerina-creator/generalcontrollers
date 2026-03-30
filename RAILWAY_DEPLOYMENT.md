@@ -130,3 +130,25 @@ const API_BASE = window.CONTACT_API_URL || 'https://generalcontrollers-contact-a
 - Honeypot field catches basic spam bots
 - No sensitive data logged (only metadata)
 - CORS prevents cross-site form submission
+
+## Responsive Layout Update
+
+- Replaced fixed px layout with flexible grid/flex system
+- Added mobile breakpoints (1024px, 600px)
+- Normalized images and typography
+- Ensured compatibility with mobile devices
+
+### Key changes
+
+| Area | Before | After |
+|---|---|---|
+| Header columns | `220px 1fr 220px` | `minmax(120px,220px) 1fr minmax(80px,220px)` |
+| Contact grid | `360px 1fr` | `minmax(200px,360px) 1fr` |
+| Hero h1 | `font-size: 44px` | `clamp(24px, 5vw, 48px)` |
+| Lead paragraph | `font-size: 18px` | `clamp(14px, 2.5vw, 18px)` |
+| Cards (≤1024px) | 2 columns | 2 columns |
+| Cards (≤600px) | 1 column | 1 column |
+| Reasons (≤600px) | 2 columns | 1 column |
+| Global images | — | `max-width:100%; height:auto` |
+| Form button | partial | `width:100%` |
+| Header mobile | fixed columns | grid-area stacked layout ≤768px |
